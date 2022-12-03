@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, Response
+from fastapi import FastAPI, status, Response, Path
 from pydantic import BaseModel
 from secrets import token_hex
 
@@ -11,17 +11,20 @@ app = FastAPI()
 hashList = {}
 
 @app.get("/")
-def root():
+async def root():
     return {"message": "Hello World"}
 
 @app.post("/new")
-def addLink(link: str):
+async def addLink(link: str):
     hash = token_hex(4).upper()
     hashList[hash] = link
     return {"hash": hash}
 
 @app.get("/{hash}", status_code=status.HTTP_301_MOVED_PERMANENTLY)
-def hashMatch(hash: str, response: Response):
-    link = hashList.get(hash)
-    response.headers["Location"] = link
-    return {}
+async def hashMatch(response: Response, hash: str):
+    if len(hash) == 8:
+        link = hashList.get(hash)
+        response.headers["Location"] = link
+        return {}
+    response.status_code = status.HTTP_404_NOT_FOUND
+    return {"error" : "Not found"}
