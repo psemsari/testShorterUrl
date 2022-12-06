@@ -1,29 +1,41 @@
-from fastapi import FastAPI, status, Response, Path
-from pydantic import BaseModel
-from secrets import token_hex
+from fastapi import FastAPI, status, Response, Depends
 
-class ShortUrl(BaseModel):
-    hash: str
-    link: str
+from database import db
+from models import ShortUrl
+
+import crud
+
+db.connect()
+db.create_tables([ShortUrl])
+db.close()
 
 app = FastAPI()
 
 hashList = {}
 
+def get_db():
+    try:
+        db.connect()
+        yield
+    finally:
+        if not db.is_closed():
+            db.close()
+
 @app.get("/")
-async def root():
+def root():
     return {"message": "Hello World"}
 
-@app.post("/new")
-async def addLink(link: str):
-    hash = token_hex(4).upper()
-    hashList[hash] = link
+@app.post("/new", dependencies=[Depends(get_db)])
+def addLink(link: str):
+    hash = crud.get_hash_by_link(link)
+    if not hash:
+        hash = crud.create_hash(link)
     return {"hash": hash}
 
-@app.get("/{hash}", status_code=status.HTTP_301_MOVED_PERMANENTLY)
-async def hashMatch(response: Response, hash: str):
+@app.get("/{hash}", status_code=status.HTTP_301_MOVED_PERMANENTLY, dependencies=[Depends(get_db)])
+def hashMatch(response: Response, hash: str):
     if len(hash) == 8:
-        link = hashList.get(hash)
+        link = crud.get_link_by_hash(hash)
         response.headers["Location"] = link
         return {}
     response.status_code = status.HTTP_404_NOT_FOUND
