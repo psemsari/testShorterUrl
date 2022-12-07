@@ -7,16 +7,12 @@ import crud
 import env
 
 app = FastAPI()
-oauth2_scheme = security.OAuth2PasswordBearer(tokenUrl="token")
 
-origins = [
-    "http://localhost:3000",
-]
+oauth2_scheme = security.OAuth2PasswordBearer(tokenUrl="token")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )

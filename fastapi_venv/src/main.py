@@ -8,4 +8,4 @@ db.create_tables([ShortUrl])
 db.close()
 
 if __name__ == "__main__":
-    uvicorn.run("routes:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("routes:app", host="0.0.0.0", port=80)

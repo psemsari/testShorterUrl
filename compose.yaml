@@ -1,0 +1,31 @@
+services:
+  frontend:
+    image: front
+    container_name: front_container
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  backend:
+    image: back
+    container_name: back-container
+    build:
+      context: ./fastapi_venv
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    container_name: db_app
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+      POSTGRES_DB: ShorterUrl

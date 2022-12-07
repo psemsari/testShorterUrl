@@ -3,4 +3,3 @@
 /lib
 */__pycache__
 pyvenv.cfg
-env.py
