@@ -6,16 +6,19 @@
 **Installation**
 
 docker-compose build
+
 docker-compose up
 
 **Access**
 
 FRONT : localhost:3000
+
 BACK : localhost:8000
 
 **Techno**
 
 FRONT: react.js
+
 BACK: FastAPI
 
 **Objectif:** Créer un site web de type URL Shortener.
