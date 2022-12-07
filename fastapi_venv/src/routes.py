@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status, Response, security, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from database import get_db
 import schemas
@@ -7,6 +8,18 @@ import env
 
 app = FastAPI()
 oauth2_scheme = security.OAuth2PasswordBearer(tokenUrl="token")
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/token")
 def login(form_data: security.OAuth2PasswordRequestForm = Depends()):
