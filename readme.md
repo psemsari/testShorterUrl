@@ -1,3 +1,20 @@
+**Objective:** To create a URL Shortener website.
+
+**Details:**
+
+- This test asks you to create a web application (backend + frontend) allowing to generate a shortened URL of a given URL via a web page.
+- This shortened URL will allow the client having this link, to be automatically redirected to the original URL.
+- You can be greatly inspired by the functioning of equivalent sites such as [bit.ly](http://bit.ly/) to perform this test.
+- An administration interface allowing to see the already reduced URLs and to delete them would be a plus, but it is not mandatory
+
+The goal is simply to see how you would approach a technical problem, so you don't have too many constraints for the realization of this test.
+
+However, we want most of the code to be written in Python, but you are free to use any frameworks and libraries you like.
+
+On the front end, you are free to use whatever you want, even if for this exercise, we will prefer a functional website rather than an aesthetic one.
+
+You will have to make this test in a public Git repository (GitHub or GitLab will be enough)
+
 **Prerequie**
 
 - docker
@@ -20,20 +37,3 @@ BACK : localhost:8000
 FRONT: react.js
 
 BACK: FastAPI
-
-**Objectif:** Créer un site web de type URL Shortener.
-
-**Détails:**
-
-- Ce test te demande de créer une application web (backend + frontend) permettant de générer une URL raccourcie d’une URL donnée via une page Web.
-- Cette URL réduite permettra au client ayant ce lien, d’être automatiquement redirigé sur l’URL d’origine.
-- Tu peux grandement t’inspirer du fonctionnement de sites équivalents tel que [bit.ly](http://bit.ly/) pour réaliser ce test.
-- Une interface d’administration permettant de voir les URLs déjà réduites et d’en supprimer serait un plus, mais cela n’est pas obligatoire
-
-Le but est simplement de voir comment tu aborderais un problème technique, donc tu n'as pas trop de contraintes pour la réalisation de ce test.
-
-Nous souhaitons toutefois qu’une majorité du code soit rédigé en Python, mais tu as le droit d’utiliser les frameworks et librairies de ton choix.
-
-Coté front, tu es libre d’utiliser ce que tu veux, même si pour cet exercice, on préfèrera un site web fonctionnel plutôt qu’un site web esthétique.
-
-Tu devras rendre ce test dans un depot Git public (GitHub ou GitLab sera suffisant)
