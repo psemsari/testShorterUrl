@@ -1,5 +1,7 @@
 # Shortener URL
 
+![image](https://img.shields.io/badge/Maintained%3F-no-red.svg)
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/41895689/235944277-ad077d94-b7e7-4d9b-ba25-cc161abe21be.png">
 </p>
